@@ -1,0 +1,30 @@
+{
+  "name": "sdk-test",
+  "version": "1.0.0",
+  "description": "",
+  "source": "src/index.html",
+  "browserslist": "> 0.5%, last 2 versions, not dead",
+  "scripts": {
+    "start": "parcel",
+    "build": "parcel build"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "assert": "^2.0.0",
+    "https-browserify": "^1.0.0",
+    "os-browserify": "^0.3.0",
+    "parcel": "^2.7.0",
+    "querystring-es3": "^0.2.1",
+    "stream-browserify": "^3.0.0",
+    "stream-http": "^3.2.0",
+    "url": "^0.11.0",
+    "util": "^0.12.4"
+  },
+  "dependencies": {
+    "@bitizenwallet/connector-web3-provider": "^1.8.6",
+    "@bitizenwallet/web3modal": "^1.9.9",
+    "@walletconnect/web3-provider": "^1.8.0",
+    "ethers": "^5.7.0"
+  }
+}
