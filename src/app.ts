@@ -70,7 +70,7 @@ const onBitizenConnectBtnClicked = async () => {
     if (!bitizenConnectBtnLoading.classList.contains('hidden')) {
         return
     }
-    bitizenConnectBtnLoading.classList.remove('hidden');
+    // bitizenConnectBtnLoading.classList.remove('hidden');
     await disconnect();
     try {
         provider = new BitizenConnectProvider({
@@ -82,7 +82,7 @@ const onBitizenConnectBtnClicked = async () => {
     } catch (error) {
         console.error(error);
     } finally {
-        bitizenConnectBtnLoading.classList.add('hidden');
+        // bitizenConnectBtnLoading.classList.add('hidden');
     }
 }
 
