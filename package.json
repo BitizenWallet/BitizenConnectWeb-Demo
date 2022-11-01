@@ -23,8 +23,6 @@
   },
   "dependencies": {
     "@bitizenwallet/connector-web3-provider": "^1.8.6",
-    "@bitizenwallet/web3modal": "^1.9.9",
-    "@walletconnect/web3-provider": "^1.8.0",
     "ethers": "^5.7.0"
   },
   "targets": {

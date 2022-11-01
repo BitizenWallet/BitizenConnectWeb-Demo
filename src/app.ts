@@ -1,6 +1,4 @@
-import Web3Modal from "@bitizenwallet/web3modal";
 import BitizenConnectProvider, { logoUri as BitizenLogo } from "@bitizenwallet/connector-web3-provider";
-import WalletConnectProvider from "@walletconnect/web3-provider";
 import { ethers } from "ethers";
 
 const infuraId = '47e28e2b5fd04f5fae8752dd2f7f0c7c'
@@ -31,24 +29,6 @@ let accounts;
 let selectedAccount;
 let ethersInstance;
 let provider;
-let web3modal = new Web3Modal({
-    network: "mainnet",
-    cacheProvider: true,
-    providerOptions: {
-        walletconnect: {
-            package: WalletConnectProvider,
-            options: {
-                infuraId,
-            }
-        },
-        bitizen: {
-            package: BitizenConnectProvider,
-            options: {
-                infuraId,
-            }
-        }
-    }
-});
 
 const disconnectBtn = document.getElementById('disconnectBtn')!;
 const showInConnected = document.getElementById('showInConnected')!;
@@ -62,9 +42,6 @@ const balance = document.getElementById('balance')!;
 const bitizenLogo = document.getElementById('bitizenLogo')!;
 const bitizenConnectBtn = document.getElementById('connectBtn')!;
 const bitizenConnectBtnLoading = bitizenConnectBtn.getElementsByTagName('svg')[0];
-
-const web3modalConnectBtn = document.getElementById('web3modalConnectBtn')!;
-const web3modalConnectBtnLoading = web3modalConnectBtn.getElementsByTagName('svg')[0];
 
 const onBitizenConnectBtnClicked = async () => {
     if (!bitizenConnectBtnLoading.classList.contains('hidden')) {
@@ -86,24 +63,6 @@ const onBitizenConnectBtnClicked = async () => {
     }
 }
 
-const onWeb3ModalConnectBtnClicked = async () => {
-    if (!web3modalConnectBtnLoading.classList.contains('hidden')) {
-        return
-    }
-    web3modalConnectBtnLoading.classList.remove('hidden');
-    await disconnect();
-    try {
-        provider = await web3modal.connect();
-        accounts = await provider.enable();
-        ethersInstance = new ethers.providers.Web3Provider(provider);
-        await connected()
-    } catch (error) {
-        console.error(error);
-    } finally {
-        web3modalConnectBtnLoading.classList.add('hidden');
-    }
-}
-
 const disconnect = async () => {
     try {
         provider.disconnect();
@@ -114,7 +73,6 @@ const disconnect = async () => {
     selectedAccount = undefined;
     accounts = [];
     ethersInstance = undefined;
-    web3modal.clearCachedProvider();
 
     showInConnected.classList.add('hidden');
     hideInConnected.classList.remove('hidden');
@@ -190,7 +148,6 @@ const onSendTransactionBtnClicked = async () => {
 (async function () {
     bitizenLogo.setAttribute('src', BitizenLogo)
     bitizenConnectBtn.onclick = onBitizenConnectBtnClicked;
-    web3modalConnectBtn.onclick = onWeb3ModalConnectBtnClicked;
     disconnectBtn.onclick = disconnect;
     accountsSelect.onchange = onSelectedAccountChanged;
     personalSignBtn.onclick = onPersonalSignBtnClicked;
