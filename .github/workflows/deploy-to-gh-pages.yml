@@ -15,7 +15,7 @@ jobs:
           node-version: '16'
       - name: Build
         run: |
-          npm i --ignore-scripts
+          npm i --force
           npm run build
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
