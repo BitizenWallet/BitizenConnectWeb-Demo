@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite",
     "preview": "vite preview",
-    "build": "vite build"
+    "build": "vite build --base=/BitizenConnectWeb-Example/"
   },
   "dependencies": {
     "@gnosis.pm/safe-apps-wagmi": "2.1.0",
